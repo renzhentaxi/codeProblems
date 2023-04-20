@@ -1,37 +1,18 @@
-the array is sorted and then rotated. 
-This means array is now made up with two sections with increasing numbers.
-The first section is greater than the second section.
-The minimum is the first character of the second section
+given:
+- an array of length n, sorted, ascending, no duplicates, rotated between 1 to n times;
 
-The nums are unique
-binary search:
-    start = 0;
-    end = nums.length;
-    let answer = 0;
-    invariant:
-        start <= minimum < end;
-    while (start < end)
-        if (mid > nums[start])
-            {
-                start = mid +1;
-            }
-        else {
-             we are on the second section
-            the minimum is either mid or in start:mid;
-            answer = mid;
-            end = mid;
-        }
-    
-    here start == mid
-    return answer;
- 
-       
+return:
+- the minimum element in the array
 
+notes:
+once rotated the array will either be a single ascending array or two ascending array.
+if rotated n times, the array will just be a single ascending array and thus minimum element will just be the first element
+if rotated less than n times and at least 1 times, then the array will contain two ascending array.
+we know `array[0]` will always be bigger than minimum.
 
-the question also included testcases where its not rotated or single element.
-In that case we know the array is no longer split into two parts. so the algorithm will fail.
-We can fix this by realizing that 
-    nums[0]< nums[nums.length-1] when the array is not rotated
-    and the minimum is always nums[0];
-    so we can return nums[0];
-    same thing with single element array.
+if mid > array[0];
+    start= mid +1;
+if mid = array[0];
+    start = mid +1;
+if mid < array[0];
+    end = mid;
